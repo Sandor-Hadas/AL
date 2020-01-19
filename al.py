@@ -49,13 +49,12 @@ def loadJson(filename):
 	print("Loading json file: " + filename)
 	with open(filename) as json_file:
 		data = json.load(json_file)
-	print(data)
+
 	return data
 
 
 # Save json file to disk
 def saveJson(data, filename):
-	print("SJ")
 	dump = json.dumps(data, indent=4)
 
 	savefile = open(filename, "w")
@@ -176,7 +175,6 @@ def printHtml(data):
 
 # Save html data to a file
 def saveHtml(data, filename):
-	print("SH")
 	dump = createHtmlString(data)
 
         savefile = open(filename, "w")
@@ -232,7 +230,7 @@ if len(inFileName) == 0:
 print("Arguments read, running with the following parameters:")
 print("Input file: " + inFileName)
 print("Output file: " + outFileName)
-print("Printing to screen as:" + printFormat)
+print("Printing to screen as: " + printFormat)
 print("\n")
 
 # Sanity check, there must be at least one input file

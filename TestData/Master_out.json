@@ -1,0 +1,31 @@
+{
+    "people": [
+        {
+            "city": "Notting Hill", 
+            "name": "Smith, John", 
+            "zip": "W11 3JE", 
+            "country": "United Kingdom", 
+            "region": "London", 
+            "phone": "+44 20 1234 5678", 
+            "street": "328 Courtnell st"
+        }, 
+        {
+            "city": "Upper Coomera", 
+            "name": "Johnston, Elizabeth", 
+            "zip": "4209", 
+            "country": "Australia", 
+            "region": "Queensland", 
+            "phone": "+61 7 2345 6789", 
+            "street": "4 Picton crt"
+        }, 
+        {
+            "city": "Hyvinkaa", 
+            "name": "Kukkola, Erik", 
+            "zip": "05800", 
+            "country": "Finland", 
+            "region": "Uusimaa", 
+            "phone": "+358 019 123 4567", 
+            "street": "Haamenkatu 2 as 2"
+        }
+    ]
+}

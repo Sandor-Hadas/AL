@@ -1,0 +1,36 @@
+Arguments read, running with the following parameters:
+Input file: TestData/input.json
+Output file: 
+Printing to screen as: txt
+
+
+Loading json file: TestData/input.json
+
+Printing data to text format:
+Name: Smith, John
+Address:
+ street: 328 Courtnell st
+ city: Notting Hill
+ region: London
+ zip: W11 3JE
+ country: United Kingdom
+Phone number: +44 20 1234 5678
+
+Name: Johnston, Elizabeth
+Address:
+ street: 4 Picton crt
+ city: Upper Coomera
+ region: Queensland
+ zip: 4209
+ country: Australia
+Phone number: +61 7 2345 6789
+
+Name: Kukkola, Erik
+Address:
+ street: Haamenkatu 2 as 2
+ city: Hyvinkaa
+ region: Uusimaa
+ zip: 05800
+ country: Finland
+Phone number: +358 019 123 4567
+
