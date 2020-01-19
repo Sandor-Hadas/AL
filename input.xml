@@ -1,0 +1,31 @@
+<?xml version = "1.0"?>
+<data>
+	<people>
+		<name>Smith, John</name>
+		<street>328 Courtnell st</street>
+		<city>Notting Hill</city>
+		<region>London</region>
+		<zip>W11 3JE</zip>
+		<country>United Kingdom</country>
+		<phone>+44 20 1234 5678</phone>
+	</people>
+	<people>
+		<name>Johnston, Elizabeth</name>
+		<street>4 Picton crt</street>
+		<city>Upper Coomera</city>
+		<region>Queensland</region>
+		<zip>4209</zip>
+		<country>Australia</country>
+		<phone>+61 7 2345 6789</phone>
+	</people>
+	<people>
+		<name>Kukkola, Erik</name>
+		<street>Haamenkatu 2 as 2</street>
+		<city>Hyvinkaa</city>
+		<region>Uusimaa</region>
+		<zip>05800</zip>
+		<country>Finland</country>
+		<phone>+358 019 123 4567</phone>
+	</people>
+</data>
+
