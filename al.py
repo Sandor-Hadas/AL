@@ -6,6 +6,7 @@ import xmltodict # pip install xmltodict
 import pprint
 
 
+# Print a simple help
 def help():
 	print("Python example converter for AL\n")
 	print("Usage:")
@@ -14,6 +15,9 @@ def help():
 	print("One input file is required, one output and one print target is handled per run, latest if multiple are defined.")
 	print("Printing is directed to stdout (python errors may appear on stderr)\n")
 
+
+# Get file extensions for a file name
+# Html is output format only
 def getExt(filename, acceptHtml = 0):
 	splitted = filename.split(".")
 	if len(splitted) < 2:
@@ -30,6 +34,7 @@ def getExt(filename, acceptHtml = 0):
 	return ""
 
 
+# Check file size for know output lengths
 def checkFileSize(stringdata, filename):
 	if os.stat(filename).st_size != len(stringdata):
 		print("File write probably failed to file " + filename + " as dump text size and file size differs")
@@ -37,6 +42,7 @@ def checkFileSize(stringdata, filename):
 		print("File writing to " + filename + " looks to be OK")
 
 
+# Load a json file from disk
 def loadJson(filename):
 	data = None
 
@@ -47,6 +53,7 @@ def loadJson(filename):
 	return data
 
 
+# Save json file to disk
 def saveJson(data, filename):
 	print("SJ")
 	dump = json.dumps(data, indent=4)
@@ -58,6 +65,7 @@ def saveJson(data, filename):
 	checkFileSize(dump, filename)
 
 
+# Load a csv file, comma separator is assumed
 def loadCsv(filename):
 	data = {}
 	loadstring = ""
@@ -80,6 +88,7 @@ def loadCsv(filename):
 	return data
 
 
+# Save csv with comma separator
 def saveCsv(data, filename):
 	filecsv = open(filename, "w")
 	filecsv.write("name,street,city,region,zip,country,phone\n")
@@ -95,7 +104,7 @@ def saveCsv(data, filename):
 	filecsv.close
 
  
-
+# Load xml file from disk
 def loadXml(filename):
 	with open(filename, 'r') as xmlFile:
 		xmlContent = xmlFile.read()
@@ -107,15 +116,21 @@ def loadXml(filename):
 
 	pp = pprint.PrettyPrinter(indent=4)
 	loadthis = pp.pformat(json.dumps(data))
-	print("XXXXX " + loadthis)
-#	loadthis = pp.pprint(json.dumps(data))
 
-	print(data)
-	print(pp)
-#	data = json.loads(json.dumps(xmltodict.parse(xmlContent)))
-	
 	return data
 
+
+# Save xml file from memory
+def saveXml(data, filename):
+	savedata = {}
+	savedata['data'] = data
+
+	with open(filename, "w") as outfile:
+		outfile.write(xmltodict.unparse(savedata))
+		print("Written " + str(outfile.tell()) + " bytes to file " + filename + " during xml export")
+
+
+# Print memory data to the screen
 def printTxt(data):
 	print("\nPrinting data to text format:")
 	for p in data['people']:
@@ -129,6 +144,8 @@ def printTxt(data):
 		print('Phone number: ' + p['phone'])
 		print('')
 
+
+# Create html data for printing / saving
 def createHtmlString(data):
 	hypst = "<!DOCTYPE html><html lang=\"en-US\"><head><title>AL data converter example program</title><meta charset=\"utf-8\"><style>"
 	hypst += "table, th, td { border: 1px solid black; }"
@@ -151,11 +168,13 @@ def createHtmlString(data):
 	return hypst
 
 
+# Print html file to the screen
 def printHtml(data):
 	print("\nPrinting data to html format:")
 	print(createHtmlString(data))
 
 
+# Save html data to a file
 def saveHtml(data, filename):
 	print("SH")
 	dump = createHtmlString(data)
@@ -167,10 +186,9 @@ def saveHtml(data, filename):
         checkFileSize(dump, filename)
 
 
-
-
 # main
 
+# Check arguments
 if len(sys.argv) < 3:
 	help()
 	print("Invalid number of arguments used when invoking program.")
@@ -181,6 +199,7 @@ if len(sys.argv) % 2 == 0:
 	print("This program accepts parameters with values only, so all parameters must have a value paired.")
 	exit(-2)
 
+# Argument derived data
 inFileName = ""
 inFileExt = ""
 outFileName = ""
@@ -216,10 +235,12 @@ print("Output file: " + outFileName)
 print("Printing to screen as:" + printFormat)
 print("\n")
 
+# Sanity check, there must be at least one input file
 if not os.path.isfile(inFileName):
 	print("File " + inFileName + " is not found.")
 	exit(-4)
 
+# in one of the supported formats
 if inFileExt.lower() == "json":
 	data = loadJson(inFileName)
 elif inFileExt.lower() == "csv":
@@ -230,6 +251,7 @@ elif inFileExt.lower() == "xml":
 if data is None:
 	exit(-5)
 
+# File output
 if outFileExt.lower() == "json":
 	saveJson(data, outFileName)
 elif outFileExt.lower() == "csv":
@@ -241,11 +263,11 @@ elif outFileExt.lower() == "html":
 elif len(outFileName) > 0:
 	print("Invalid output file format: " + outFileName)
 
+# Console output
 if printFormat == "txt":
 	printTxt(data)
 elif printFormat == "html":
 	printHtml(data)
 elif len(printFormat) > 0:
 	print("Invalid print format: " + printFormat)
-
 
